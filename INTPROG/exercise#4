@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1 - Form POST Example</title>
+</head>
+<body>
+
+  <h1>Submit Your Data</h1>
+
+  <form action="https://example.com/submit" method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Optional: Show result after submission -->
+  <div id="result"></div>
+
+  <script>
+    // If you want to intercept the POST and handle via JavaScript (AJAX)
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // stop default form submission
+
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      };
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        document.getElementById('result').innerText = "Server response: " + JSON.stringify(result);
+      })
+      .catch(error => {
+        document.getElementById('result').innerText = "Error: " + error;
+      });
+    });
+  </script>
+
+</body>
+</html>
