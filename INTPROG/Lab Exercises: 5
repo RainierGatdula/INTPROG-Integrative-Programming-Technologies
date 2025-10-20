@@ -1,0 +1,15 @@
+<?php
+$jsonInput = file_get_contents('php://input');
+
+$data = json_decode($jsonInput, true);
+
+$name = $data['name'] ?? 'Rainier'; // Default to 'Guest' if no name provided
+$response = array(
+    "status" => "success",
+    "message" => "Welcome, $name!"
+);
+
+header('Content-Type: application/json');
+
+echo json_encode($response);
+?>
