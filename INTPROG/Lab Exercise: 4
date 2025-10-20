@@ -1,0 +1,9 @@
+<?php
+
+$jsonInput = '{"username":"admin","password":"1234"}';
+
+$data = json_decode($jsonInput, true);
+
+echo "Username: " . $data['username'] . "<br>";
+echo "Password: " . $data['password'];
+?>
