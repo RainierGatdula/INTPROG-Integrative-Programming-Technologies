@@ -1,0 +1,15 @@
+1. What are the main differences between XMLHttpRequest and Fetch API?
+- The Fetch API uses modern JavaScript promises, while XMLHttpRequest (XHR) relies on older callback-based syntax.
+- Fetch is cleaner, easier to read, and returns a Promise, making it simpler to chain operations.
+- XHR requires more code to handle states and responses.
+
+2. Why is the Fetch API considered more modern and readable?
+- Because it uses Promises and supports async/await, which makes the code more readable and easier to manage than nested callbacks.
+
+3. What is the purpose of the .then() and .catch() methods in Fetch?
+- .then() handles successful responses after the request completes.
+- .catch() handles any errors (like network issues or invalid responses).
+
+4. What happens when you send a POST request to the placeholder API?
+- The API simulates creating a new resource and returns a fake response with a new id (usually 101).
+- It doesn’t actually save data on the server—it’s just for testing.
