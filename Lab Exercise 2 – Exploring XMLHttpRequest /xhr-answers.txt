@@ -1,0 +1,10 @@
+1. Difference between readyState and status:
+- readyState exists as an XMLHttpRequest property. 0 exists at unsent. 1 exists at opened. 2 exists at headers received. 3 exists at loading. 4 exists at done.
+- Status shows the server's HTTP response code like 200 showing success or 404 showing not found.
+
+2. How to make the request asynchronous:
+- The request becomes asynchronous when the third parameter within xhr.open() is true as the example shows:
+xhr.open("GET", "url", true);
+
+3. Why asynchronous communication is recommended for web applications:
+- Asynchronous communication lets the web page proceed without awaiting for a response from the server, which improves with the user experience because the web page does not freeze to the user or refresh during the process.
