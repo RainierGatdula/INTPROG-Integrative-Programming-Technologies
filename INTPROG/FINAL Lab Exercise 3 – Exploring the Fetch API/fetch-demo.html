@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch API Demo</title>
+</head>
+<body>
+  <h2>Exploring the Fetch API</h2>
+
+  <button id="loadData">Load Post Data (GET)</button>
+  <button id="sendData" style="margin-left: 10px;">Send New Post (POST)</button>
+
+  <div id="output" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+
+  <script>
+    const output = document.getElementById("output");
+
+    document.getElementById("loadData").addEventListener("click", function () {
+      fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          output.innerHTML = `
+            <strong>Post Title:</strong> ${data.title}<br><br>
+            <strong>Content:</strong> ${data.body}
+          `;
+        })
+        .catch(error => {
+          output.innerHTML = `<span style="color:red;">Error: ${error.message}</span>`;
+        });
+    });
+
+    document.getElementById("sendData").addEventListener("click", function () {
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: "My New Post",
+          body: "Learning Fetch API is fun!",
+          userId: 1
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        output.innerHTML = `
+          <strong>New Post Created!</strong><br>
+          Post ID: ${data.id}
+        `;
+      })
+      .catch(error => {
+        output.innerHTML = `<span style="color:red;">Error: ${error.message}</span>`;
+      });
+    });
+  </script>
+</body>
+</html>
