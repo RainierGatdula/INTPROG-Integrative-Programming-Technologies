@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Learn HTML Basics - Version B (Tabs)</title>
+  <style>
+    :root{
+      --blue:#4d79ff;
+      --green:#4CAF50;
+      --bg:#f4f7ff;
+      --card:#ffffff;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      background:var(--bg);
+      color:#222;
+    }
+    header{
+      background:linear-gradient(90deg,var(--green),var(--blue));
+      color:white;
+      padding:22px 16px;
+      text-align:center;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:18px auto;
+      padding:0 16px 40px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .tab {
+      background:var(--card);
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 1px 3px rgba(0,0,0,0.04);
+    }
+    .tab.active { outline:3px solid rgba(77,121,255,0.12); }
+
+    .card{
+      background:var(--card);
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(20,20,50,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    h2{ color:var(--blue); margin-top:0 }
+    .lesson { border-left:4px solid var(--blue); padding:12px; margin-bottom:12px; background:#fbfbff; border-radius:6px; }
+    pre{background:#0d0d0d;color:#0f0;padding:10px;border-radius:6px;overflow:auto}
+    button{background:var(--blue);color:white;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}
+    button:active{transform:translateY(1px)}
+
+    textarea{width:100%;height:160px;font-family:monospace;padding:10px;border-radius:6px;border:1px solid #ddd}
+    iframe{width:100%;height:260px;border:1px solid #ddd;border-radius:6px;margin-top:10px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:880px){ .grid{grid-template-columns:1fr} iframe{height:200px} }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Learn HTML Basics</h1>
+<div style="opacity:.95"><em>Code & Play: HTML Basics</em></div>  </header>
+
+  <div class="wrap">
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-view="learn">Learn</div>
+      <div class="tab" data-view="code">Code Practice</div>
+      <div class="tab" data-view="quiz">Quiz</div>
+    </div>
+
+    <!-- LEARN -->
+    <div class="card" id="view-learn" data-viewpane>
+      <h2>Lessons 1–5 (Learn)</h2>
+
+      <div class="lesson">
+        <h3>Lesson 1 — What is HTML?</h3>
+        <p>HTML structures web pages using tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;a&gt;</code>.</p>
+        <pre>&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+
+      <div class="lesson">
+        <h3>Lesson 2 — Basic Structure</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;...content...&lt;/body&gt;
+&lt;/html&gt;</pre>
+      </div>
+
+      <div class="lesson">
+         <h3>Lesson 3 — Headings & Paragraphs</h3>
+  <p>Use <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> for headings and <code>&lt;p&gt;</code> for normal text.</p>
+  <pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;</pre>
+      </div>
+
+      <div class="lesson">
+        <h3>Lesson 4 — Images & Links</h3>
+        <pre>&lt;img src="https://via.placeholder.com/150" alt="sample"&gt;
+&lt;a href="https://example.com" target="_blank"&gt;Visit&lt;/a&gt;</pre>
+      </div>
+
+      <div class="lesson">
+        <h3>Lesson 5 — Lists & Tables</h3>
+        <pre>&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table border="1"&gt;...&lt;/table&gt;</pre>
+      </div>
+    </div>
+
+    <!-- CODE PRACTICE -->
+    <div class="card" id="view-code" data-viewpane style="display:none">
+      <h2>Code Practice</h2>
+
+      <div class="grid">
+        <div>
+          <select id="exampleSelect" style="width:100%;padding:8px;border-radius:6px;margin-bottom:10px">
+            <option value="ex1">Hello World</option>
+            <option value="ex2">Basic Structure</option>
+            <option value="ex3">Image & Link</option>
+            <option value="ex4">List Example</option>
+            <option value="ex5">Table Example</option>
+          </select>
+
+          <textarea id="editor"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="runBtn">Run</button>
+            <button id="resetBtn" style="background:#4CAF50">Reset</button>
+            <button id="downloadBtn" style="background:#888">Download HTML</button>
+          </div>
+        </div>
+
+        <div>
+          <iframe id="preview"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ (NOW 5 QUESTIONS) -->
+    <div class="card" id="view-quiz" data-viewpane style="display:none">
+      <h2>Mini Quiz</h2>
+
+      <!-- Q1 -->
+      <div class="lesson">
+        <label>1) Which is the paragraph tag?</label><br>
+        <select id="q1">
+          <option value="">--choose--</option>
+          <option value="p">&lt;p&gt;</option>
+          <option value="h1">&lt;h1&gt;</option>
+          <option value="table">&lt;table&gt;</option>
+        </select>
+      </div>
+
+      <!-- Q2 -->
+      <div class="lesson">
+        <label>2) Which tag displays images?</label><br>
+        <select id="q2">
+          <option value="">--choose--</option>
+          <option value="div">&lt;div&gt;</option>
+          <option value="img">&lt;img&gt;</option>
+          <option value="a">&lt;a&gt;</option>
+        </select>
+      </div>
+
+      <!-- Q3 -->
+      <div class="lesson">
+        <label>3) Which is the biggest heading tag?</label><br>
+        <select id="q3">
+          <option value="">--choose--</option>
+          <option value="h1">&lt;h1&gt;</option>
+          <option value="h6">&lt;h6&gt;</option>
+          <option value="p">&lt;p&gt;</option>
+        </select>
+      </div>
+
+      <!-- Q4 -->
+      <div class="lesson">
+        <label>4) What is the first tag in an HTML document?</label><br>
+        <select id="q4">
+          <option value="">--choose--</option>
+          <option value="html">&lt;html&gt;</option>
+          <option value="doctype">&lt;!DOCTYPE html&gt;</option>
+          <option value="head">&lt;head&gt;</option>
+        </select>
+      </div>
+
+      <!-- Q5 -->
+      <div class="lesson">
+        <label>5) Which tag creates a bullet list?</label><br>
+        <select id="q5">
+          <option value="">--choose--</option>
+          <option value="ul">&lt;ul&gt;</option>
+          <option value="ol">&lt;ol&gt;</option>
+          <option value="table">&lt;table&gt;</option>
+        </select>
+      </div>
+
+      <button onclick="scoreQuiz()">Submit</button>
+      <span id="quizResult" style="margin-left:10px;font-weight:bold"></span>
+    </div>
+  </div>
+
+  <script>
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    const panes = document.querySelectorAll('[data-viewpane]');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        const v = tab.dataset.view;
+        panes.forEach(p=> p.style.display = (p.id === 'view-' + v) ? 'block' : 'none');
+      });
+    });
+
+    // Code editor examples
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+    const exampleSelect = document.getElementById('exampleSelect');
+
+   const examples = { 
+  ex1: `<h1>John 3:16</h1>\n<p>"For God so loved the world that He gave His one and only Son, that whoever believes in Him shall not perish but have eternal life."</p>`,
+  ex2: `<!DOCTYPE html>\n<html>\n<head>\n<title>Bible</title>\n</head>\n<body>\n<h1>Psalm 23:1</h1>\n<h2>"The Lord is my shepherd; I shall not want."</h2>\n</body>\n</html>`,
+  ex3: `<h2>Image & Link</h2>\n<img src="https://share.google/e5droGkv6MtiJqB6Z">\n<br>\n<a href="https://example.com">Visit Example</a>`,
+  ex4: `<h3>Bible Books</h3>\n<ul>\n  <li>Genesis</li>\n  <li>Exodus</li>\n  <li>Leviticus</li>\n  <li>Numbers</li>\n  <li>Deuteronomy</li>\n  <li>Joshua</li>\n  <li>Judges</li>\n  <li>Ruth</li>\n  <li>1 Samuel</li>\n  <li>2 Samuel</li>\n  <li>1 Kings</li>\n  <li>2 Kings</li>\n  <li>1 Chronicles</li>\n  <li>2 Chronicles</li>\n  <li>Ezra</li>\n  <li>Nehemiah</li>\n  <li>Esther</li>\n  <li>Job</li>\n  <li>Psalms</li>\n  <li>Proverbs</li>\n  <li>Ecclesiastes</li>\n  <li>Song of Solomon</li>\n  <li>Isaiah</li>\n  <li>Jeremiah</li>\n  <li>Lamentations</li>\n  <li>Ezekiel</li>\n  <li>Daniel</li>\n  <li>Hosea</li>\n  <li>Joel</li>\n  <li>Amos</li>\n  <li>Obadiah</li>\n  <li>Jonah</li>\n  <li>Micah</li>\n  <li>Nahum</li>\n  <li>Habakkuk</li>\n  <li>Zephaniah</li>\n  <li>Haggai</li>\n  <li>Zechariah</li>\n  <li>Malachi</li>\n  <li>Matthew</li>\n  <li>Mark</li>\n  <li>Luke</li>\n  <li>John</li>\n  <li>Acts</li>\n  <li>Romans</li>\n  <li>1 Corinthians</li>\n  <li>2 Corinthians</li>\n  <li>Galatians</li>\n  <li>Ephesians</li>\n  <li>Philippians</li>\n  <li>Colossians</li>\n  <li>1 Thessalonians</li>\n  <li>2 Thessalonians</li>\n  <li>1 Timothy</li>\n  <li>2 Timothy</li>\n  <li>Titus</li>\n  <li>Philemon</li>\n  <li>Hebrews</li>\n  <li>James</li>\n  <li>1 Peter</li>\n  <li>2 Peter</li>\n  <li>1 John</li>\n  <li>2 John</li>\n  <li>3 John</li>\n  <li>Jude</li>\n  <li>Revelation</li>\n</ul>`,
+  ex5: `<h3>Bible Verse Table</h3>\n<table border="1">\n<tr><th>Book</th><th>Chapter</th><th>Verse</th><th>Text</th></tr>\n<tr><td>John</td><td>3</td><td>16</td><td>"For God so loved the world that He gave His one and only Son, that whoever believes in Him shall not perish but have eternal life."</td></tr>\n<tr><td>Psalm</td><td>23</td><td>1</td><td>"The Lord is my shepherd; I shall not want."</td></tr>\n<tr><td>Proverbs</td><td>3</td><td>5</td><td>"Trust in the Lord with all your heart and lean not on your own understanding."</td></tr>\n</table>`
+};
+
+
+    function loadExample(key){
+      editor.value = examples[key];
+      preview.srcdoc = editor.value;
+    }
+    exampleSelect.addEventListener('change', ()=> loadExample(exampleSelect.value));
+    document.getElementById('runBtn').addEventListener('click', ()=> preview.srcdoc = editor.value);
+    document.getElementById('resetBtn').addEventListener('click', ()=> loadExample(exampleSelect.value));
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      const blob = new Blob([editor.value], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download='practice.html'; a.click();
+    });
+
+    loadExample('ex1');
+
+    // Quiz scoring
+    function scoreQuiz(){
+      let score = 0;
+      if(document.getElementById('q1').value === 'p') score++;
+      if(document.getElementById('q2').value === 'img') score++;
+      if(document.getElementById('q3').value === 'h1') score++;
+      if(document.getElementById('q4').value === 'doctype') score++;
+      if(document.getElementById('q5').value === 'ul') score++;
+
+      document.getElementById('quizResult').innerText = `You scored ${score}/5`;
+    }
+  </script>
+</body>
+</html>
